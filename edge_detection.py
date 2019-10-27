@@ -11,7 +11,7 @@ def nabla(img, k, j):
 def edge_detection(img, epsilon):
     m = len(img)
     n = len(img[0])
-    edge_image = [[0] * n] * m
+    edge_image = [[0 for j in range(n)] for i in range(m)]
     for k in range(m - 1):
         for l in range(n - 1):
             if nabla(img, k, j) >= epsilon:
