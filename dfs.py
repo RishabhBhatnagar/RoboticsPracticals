@@ -12,7 +12,6 @@ def dfs(G, i, j, visited, m, n):
 
 
 # alternative implementation
-# dono me se koi bhi ek chalega.
 
 
 def dfs(G, i, j, visited, m, n):
@@ -28,6 +27,23 @@ def dfs(G, i, j, visited, m, n):
     return []
 
 
+# another alternative implementation algorithm
+
+def dfs(G, x, y, visited, m, n):
+    # iterative version:
+    stack = [(x, y)]
+    ans = []
+    while stack:
+        i, j = stack.pop()
+        if (0 <= i < m) and (0 <= j < n)and (not visited[i][j]) and G[i][j] == 1:
+            stack.append((i + 0, j - 1))  # left
+            stack.append((i + 0, j + 1))  # right
+            stack.append((i - 1, j + 0))  # top
+            stack.append((i + 1, j + 0))  # bottom
+            visited[i][j] = True
+            ans.append((i, j))
+    return ans
+
 if __name__ == '__main__':
     graph = [
         [0, 0, 0, 0, 1],
@@ -42,4 +58,5 @@ if __name__ == '__main__':
     n = len(graph[0])
     visited = [[False for j in range(n)] for i in range(m)]
     res = dfs(graph, 0, 4, visited, m, n)
+    print(res)
 
